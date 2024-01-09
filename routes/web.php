@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (){
+    $data = $handleRoute = "";
+    return view('main');
 });

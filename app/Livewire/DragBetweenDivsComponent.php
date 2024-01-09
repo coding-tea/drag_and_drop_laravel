@@ -2,31 +2,55 @@
 
 namespace App\Livewire;
 
+use App\Models\Test;
 use Livewire\Component;
 
 class DragBetweenDivsComponent extends Component
 {
-    public $items = ['Item 1', 'Item 2', 'Item 3'];
-    public $targetItems = [];
+
+    //for title
+    public $box1;
+    public $box2;
+
+    //form models
+    public $Sourceitems;
+    public $SourceitemsShowsColumn;
+
+    //for columns
+    public $targetItems;
+    public $targetItemsShowsColumn;
 
     public function render()
     {
+        //boxes titles
+        $this->box1 = "box 1";
+        $this->box2 = "box 2";
+
+        //intiale modles
+        $this->Sourceitems = Test::where('is_drop', false)->get();
+        $this->targetItems = Test::where('is_drop', true)->get();
+
+        //the column name that showed on component
+        $this->SourceitemsShowsColumn = "name";
+        $this->targetItemsShowsColumn = "name";
+
         return view('livewire.drag-between-divs-component');
     }
 
-    public function moveForward($index)
+    //the action when item get from box1
+    public function moveForward($item) //$item here is the ID
     {
-        $forwardItem = $this->items[$index];
-        unset($this->items[$index]);
-        $this->items = array_values($this->items);
-        $this->targetItems[] = $forwardItem;
+        Test::find($item)->update([
+            "is_drop" => true
+        ]);
     }
 
-    public function moveBack($index){
-        $backItem = $this->targetItems[$index];
-        unset($this->targetItems[$index]);
-        $this->targetItems = array_values($this->targetItems);
-        $this->items[] = $backItem;
+    //the action when item get from box2
+    public function moveBack($item) //$item here is the ID
+    {
+        Test::find($item)->update([
+            "is_drop" => false
+        ]);
     }
 
     public function moveToTarget($index)

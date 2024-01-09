@@ -13,11 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $arr = [];
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        for($i=0; $i<10; $i++){
+            array_push($arr, [
+                "name" => "item" . $i,
+                "is_drop" => false
+            ]);
+        }
+
+        DB::table('tests')->insert($arr);
     }
 }

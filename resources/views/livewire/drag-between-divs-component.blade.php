@@ -2,6 +2,7 @@
 
     {{-- if you have any thing else --}}
     {{-- drop it here --}}
+    <x-button message="hello world" />
 
     {{-- for drag and drop --}}
     <div class="row row-cols-lg-2 mt-5">

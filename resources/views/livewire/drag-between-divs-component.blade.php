@@ -23,15 +23,15 @@
 
                         @isset($Sourceitems)
                             @foreach ($Sourceitems->toArray() as $item)
-                                <div class="col" tabindex="0" wire:key="target-{{ $item['id'] }}"
-                                    wire:click="moveToTarget({{ $item['id'] }})" style="cursor: pointer;">
+                                <div class="col" tabindex="0" wire:key="target-{{ $item['id'] }}">
                                     <div class="card bg-light-warning">
                                         <div class="card-header">
                                             <div class="card-title">
                                                 <h3 class="card-label">{{ $item[$SourceitemsShowsColumn] }}</h3>
                                             </div>
                                             <div class="card-toolbar">
-                                                <button style="font-size: 20px"
+                                                <button wire:click="moveToTarget({{ $item['id'] }})"
+                                                    style="cursor: pointer;" style="font-size: 20px"
                                                     class="btn btn-icon btn-hover-light-primary">
                                                     &rarr;
                                                 </button>
@@ -68,15 +68,15 @@
                     <div style="display: flow" class="scroll  h-500px row row-cols-1 g-10 min-h-200px">
                         @isset($targetItems)
                             @foreach ($targetItems->toArray() as $item)
-                                <div wire:key="target-{{ $item['id'] }}" wire:click="moveToSource({{ $item['id'] }})"
-                                    style="cursor: pointer;" class="col">
+                                <div wire:key="target-{{ $item['id'] }}" class="col">
                                     <div class="card bg-light-warning">
                                         <div class="card-header">
                                             <div class="card-title">
                                                 <h3 class="card-label">{{ $item[$targetItemsShowsColumn] }}</h3>
                                             </div>
                                             <div class="card-toolbar">
-                                                <button style="font-size: 20px"
+                                                <button wire:click="moveToSource({{ $item['id'] }})"
+                                                    style="cursor: pointer;" style="font-size: 20px"
                                                     class="btn btn-icon btn-hover-light-primary">
                                                     &larr;
                                                 </button>
